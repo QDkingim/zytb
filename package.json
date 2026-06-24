@@ -5,12 +5,16 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "build:og-image": "node scripts/build-og-image.js"
   },
   "dependencies": {
     "compression": "^1.8.1",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "nodemailer": "^6.9.16"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.2"
   }
 }

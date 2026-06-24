@@ -13,7 +13,9 @@ const ROOT = __dirname;
 
 const criticalCss = fs.readFileSync(path.join(ROOT, 'css/critical.css'), 'utf8');
 const indexTemplate = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
-const indexHtml = indexTemplate.replace('<!--CRITICAL_CSS-->', criticalCss);
+const indexHtml = indexTemplate
+  .replace('<!--CRITICAL_CSS-->', criticalCss)
+  .replaceAll('<!--SITE_URL-->', SITE_URL);
 
 app.set('trust proxy', 1);
 app.use(compression());
