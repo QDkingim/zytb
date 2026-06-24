@@ -8,6 +8,7 @@ module.exports = {
     max_memory_restart: '200M',
     env: {
       NODE_ENV: 'production',
+      SITE_URL: 'https://www.renxiangsan.com',
     },
   }],
 };
