@@ -1,16 +1,40 @@
 require('dotenv').config();
 
 const express = require('express');
+const compression = require('compression');
 const nodemailer = require('nodemailer');
+const fs = require('fs');
 const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const SITE_URL = (process.env.SITE_URL || 'https://www.renxiangsan.com').replace(/\/$/, '');
+const ROOT = __dirname;
+
+const criticalCss = fs.readFileSync(path.join(ROOT, 'css/critical.css'), 'utf8');
+const indexTemplate = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+const indexHtml = indexTemplate.replace('<!--CRITICAL_CSS-->', criticalCss);
 
 app.set('trust proxy', 1);
+app.use(compression());
 app.use(express.json());
-app.use(express.static(path.join(__dirname)));
+
+const ONE_WEEK = 604800;
+
+app.use(express.static(ROOT, {
+  index: false,
+  setHeaders(res, filePath) {
+    if (/\.(css|js|svg|ico|png|jpg|jpeg|webp|woff2?)$/.test(filePath)) {
+      res.setHeader('Cache-Control', `public, max-age=${ONE_WEEK}, immutable`);
+    }
+  },
+}));
+
+app.get('/', (_req, res) => {
+  res.set('Cache-Control', 'public, max-age=300, must-revalidate');
+  res.set('Link', '</css/style.css>; rel=preload; as=style');
+  res.type('html').send(indexHtml);
+});
 
 app.get('/robots.txt', (_req, res) => {
   res.type('text/plain');

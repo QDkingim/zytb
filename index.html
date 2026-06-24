@@ -18,7 +18,7 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/favicon.svg">
 
-  <!-- Open Graph -->
+  <!-- Open Graph / Twitter（体积小，保留在 head） -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:site_name" content="智愿填报">
@@ -26,109 +26,16 @@
   <meta property="og:description" content="数据驱动的高考志愿填报指导，定制冲稳保志愿方案，全国新高考省份覆盖，一对一顾问免费咨询。">
   <meta property="og:url" content="https://www.renxiangsan.com/">
   <meta property="og:image" content="https://www.renxiangsan.com/og-image.svg">
-
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="2026高考志愿填报指导 | 智愿填报">
   <meta name="twitter:description" content="专业高考志愿填报指导，冲稳保方案定制，数据驱动决策，免费咨询。">
   <meta name="twitter:image" content="https://www.renxiangsan.com/og-image.svg">
 
-  <link rel="stylesheet" href="css/style.css">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://www.renxiangsan.com/#website",
-        "url": "https://www.renxiangsan.com/",
-        "name": "智愿填报",
-        "description": "2026高考志愿填报专业指导服务",
-        "inLanguage": "zh-CN",
-        "publisher": { "@id": "https://www.renxiangsan.com/#organization" }
-      },
-      {
-        "@type": "Organization",
-        "@id": "https://www.renxiangsan.com/#organization",
-        "name": "智愿填报",
-        "url": "https://www.renxiangsan.com/",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://www.renxiangsan.com/favicon.svg"
-        },
-        "description": "专注高考志愿填报指导，用数据与经验帮助考生做出更明智的志愿选择",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "contactType": "customer service",
-          "availableLanguage": "Chinese",
-          "hoursAvailable": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-            "opens": "09:00",
-            "closes": "22:00"
-          }
-        }
-      },
-      {
-        "@type": "ProfessionalService",
-        "@id": "https://www.renxiangsan.com/#service",
-        "name": "智愿填报 · 高考志愿填报指导",
-        "url": "https://www.renxiangsan.com/",
-        "description": "基于历年录取数据与位次分析，提供个性化冲稳保志愿填报方案，覆盖全国大部分高考省份",
-        "provider": { "@id": "https://www.renxiangsan.com/#organization" },
-        "areaServed": { "@type": "Country", "name": "中国" },
-        "serviceType": "高考志愿填报指导"
-      },
-      {
-        "@type": "FAQPage",
-        "@id": "https://www.renxiangsan.com/#faq",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "出分后多久需要完成志愿填报？",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "各省填报时间不同，一般在出分后3-7天内截止。建议出分当天就联系专业顾问，48小时内完成方案制定，预留充足时间审核和调整。"
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "你们能保证我被某所大学录取吗？",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "我们不承诺、不保证任何录取结果。我们提供基于数据和经验的专业指导，帮您规避填报风险、优化志愿结构。录取结果受当年报考人数、招生计划等多种因素影响。"
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "服务流程是怎样的？",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "填写信息表单或添加微信咨询 → 顾问一对一沟通了解分数位次与偏好 → 出具个性化冲稳保方案 → 协助审核志愿表 → 填报期间随时答疑。"
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "收费情况如何？",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "提供多种套餐，基础咨询免费，完整方案服务按档位收费。添加微信或填写表单后，顾问会根据需求给出详细报价，无隐形消费。"
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "支持哪些省份？",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "目前支持全国大部分高考省份，包括新高考改革省份（3+1+2、3+3模式）。填写表单时请注明所在省份，我们会匹配对应省份的数据与政策顾问。"
-            }
-          }
-        ]
-      }
-    ]
-  }
-  </script>
+  <!-- 首屏关键样式内联，完整 CSS 异步加载 -->
+  <style id="critical-css"><!--CRITICAL_CSS--></style>
+  <link rel="preload" href="css/style.css" as="style">
+  <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="css/style.css"></noscript>
 </head>
 <body>
 
@@ -547,6 +454,11 @@
 
   <!-- 提交成功提示 -->
   <div class="toast" id="toast">✓ 提交成功，稍后联系您</div>
+
+  <!-- 结构化数据移至 body 末尾，不阻塞首屏解析 -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.renxiangsan.com/#website","url":"https://www.renxiangsan.com/","name":"智愿填报","description":"2026高考志愿填报专业指导服务","inLanguage":"zh-CN","publisher":{"@id":"https://www.renxiangsan.com/#organization"}},{"@type":"Organization","@id":"https://www.renxiangsan.com/#organization","name":"智愿填报","url":"https://www.renxiangsan.com/","logo":{"@type":"ImageObject","url":"https://www.renxiangsan.com/favicon.svg"},"description":"专注高考志愿填报指导，用数据与经验帮助考生做出更明智的志愿选择","contactPoint":{"@type":"ContactPoint","contactType":"customer service","availableLanguage":"Chinese","hoursAvailable":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"09:00","closes":"22:00"}}},{"@type":"ProfessionalService","@id":"https://www.renxiangsan.com/#service","name":"智愿填报 · 高考志愿填报指导","url":"https://www.renxiangsan.com/","description":"基于历年录取数据与位次分析，提供个性化冲稳保志愿填报方案，覆盖全国大部分高考省份","provider":{"@id":"https://www.renxiangsan.com/#organization"},"areaServed":{"@type":"Country","name":"中国"},"serviceType":"高考志愿填报指导"},{"@type":"FAQPage","@id":"https://www.renxiangsan.com/#faq","mainEntity":[{"@type":"Question","name":"出分后多久需要完成志愿填报？","acceptedAnswer":{"@type":"Answer","text":"各省填报时间不同，一般在出分后3-7天内截止。建议出分当天就联系专业顾问，48小时内完成方案制定，预留充足时间审核和调整。"}},{"@type":"Question","name":"你们能保证我被某所大学录取吗？","acceptedAnswer":{"@type":"Answer","text":"我们不承诺、不保证任何录取结果。我们提供基于数据和经验的专业指导，帮您规避填报风险、优化志愿结构。录取结果受当年报考人数、招生计划等多种因素影响。"}},{"@type":"Question","name":"服务流程是怎样的？","acceptedAnswer":{"@type":"Answer","text":"填写信息表单或添加微信咨询 → 顾问一对一沟通了解分数位次与偏好 → 出具个性化冲稳保方案 → 协助审核志愿表 → 填报期间随时答疑。"}},{"@type":"Question","name":"收费情况如何？","acceptedAnswer":{"@type":"Answer","text":"提供多种套餐，基础咨询免费，完整方案服务按档位收费。添加微信或填写表单后，顾问会根据需求给出详细报价，无隐形消费。"}},{"@type":"Question","name":"支持哪些省份？","acceptedAnswer":{"@type":"Answer","text":"目前支持全国大部分高考省份，包括新高考改革省份（3+1+2、3+3模式）。填写表单时请注明所在省份，我们会匹配对应省份的数据与政策顾问。"}}]}]}
+  </script>
   <script src="js/main.js" defer></script>
 </body>
 </html>

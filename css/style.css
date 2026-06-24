@@ -139,9 +139,7 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(255,255,255,.95);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: var(--white);
       border-bottom: 1px solid var(--gray-200);
       box-shadow: var(--shadow-sm);
     }
@@ -277,7 +275,10 @@
       padding: 6px 16px;
       border-radius: 50px;
       margin-bottom: 20px;
-      animation: pulse 2s infinite;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-badge { animation: pulse 2s infinite; }
     }
 
     @keyframes pulse {
@@ -349,6 +350,18 @@
 
     /* ===== Advantages ===== */
     .advantages { background: var(--gray-50); }
+
+    /* 首屏以下区域延迟渲染，加快首次绘制 */
+    .advantages,
+    #services,
+    .faq,
+    #testimonials,
+    .form-section,
+    .contact-cta,
+    footer {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 600px;
+    }
 
     .cards-grid {
       display: grid;

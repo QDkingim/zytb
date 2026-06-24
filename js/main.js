@@ -92,9 +92,16 @@
     });
 
     /* ===== 导航栏滚动阴影 ===== */
+    const nav = document.getElementById('navbar');
+    let ticking = false;
+
     window.addEventListener('scroll', () => {
-      const nav = document.getElementById('navbar');
-      nav.style.boxShadow = window.scrollY > 10
-        ? '0 4px 16px rgba(0,0,0,.08)'
-        : '0 1px 3px rgba(0,0,0,.08)';
-    });
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        nav.style.boxShadow = window.scrollY > 10
+          ? '0 4px 16px rgba(0,0,0,.08)'
+          : '0 1px 3px rgba(0,0,0,.08)';
+        ticking = false;
+      });
+    }, { passive: true });
