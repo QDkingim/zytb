@@ -712,6 +712,10 @@
       opacity: 1;
     }
 
+    .toast.toast-error {
+      background: #DC2626;
+    }
+
     /* ===== Contact CTA ===== */
     .contact-cta {
       text-align: center;
