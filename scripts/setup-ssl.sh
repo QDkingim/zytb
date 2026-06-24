@@ -62,6 +62,13 @@ if [[ ! -f /etc/letsencrypt/ssl-dhparams.pem ]]; then
   openssl dhparam -out /etc/letsencrypt/ssl-dhparams.pem 2048
 fi
 
+echo "==> 检查 443 端口防火墙..."
+if command -v ufw &>/dev/null && ufw status | grep -q "Status: active"; then
+  ufw allow 443/tcp || true
+  echo "    已尝试 ufw allow 443/tcp"
+fi
+echo "    若仍无法访问 HTTPS，请在云控制台安全组放行 443 端口（腾讯云/阿里云）"
+
 echo "==> 部署 HTTPS 生产配置..."
 cp "${PROJECT_DIR}/nginx.example.conf" "${NGINX_SITE}"
 nginx -t
