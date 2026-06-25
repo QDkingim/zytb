@@ -87,10 +87,10 @@ function createTransporter() {
 }
 
 function validatePayload(body) {
-  const { name, phone, province, score } = body;
+  const { name, phone, wechat, province, score } = body;
 
-  if (!name?.trim() || !phone?.trim() || !province || !score) {
-    return '请填写所有必填项（姓名、电话、省份、分数）';
+  if (!name?.trim() || !phone?.trim() || !wechat?.trim() || !province || !score) {
+    return '请填写所有必填项（姓名、电话、微信号、省份、分数）';
   }
 
   if (!/^1[3-9]\d{9}$/.test(phone.trim())) {
@@ -114,6 +114,7 @@ app.post('/api/submit', async (req, res) => {
   const {
     name,
     phone,
+    wechat,
     province,
     score,
     rank = '',
@@ -131,6 +132,7 @@ app.post('/api/submit', async (req, res) => {
     `提交时间：${submittedAt}`,
     `姓名：${name.trim()}`,
     `联系电话：${phone.trim()}`,
+    `微信号：${wechat.trim()}`,
     `所在省份：${province}`,
     `高考分数：${score}`,
     `全省位次：${rank || '未填写'}`,
@@ -145,6 +147,7 @@ app.post('/api/submit', async (req, res) => {
       <tr><td style="color:#666;">提交时间</td><td>${submittedAt}</td></tr>
       <tr><td style="color:#666;">姓名</td><td>${name.trim()}</td></tr>
       <tr><td style="color:#666;">联系电话</td><td>${phone.trim()}</td></tr>
+      <tr><td style="color:#666;">微信号</td><td>${wechat.trim()}</td></tr>
       <tr><td style="color:#666;">所在省份</td><td>${province}</td></tr>
       <tr><td style="color:#666;">高考分数</td><td>${score}</td></tr>
       <tr><td style="color:#666;">全省位次</td><td>${rank || '未填写'}</td></tr>

@@ -45,6 +45,7 @@
       const payload = {
         name: document.getElementById('name').value.trim(),
         phone: document.getElementById('phone').value.trim(),
+        wechat: document.getElementById('wechat').value.trim(),
         province: document.getElementById('province').value,
         score: document.getElementById('score').value,
         rank: document.getElementById('rank').value.trim(),
@@ -53,8 +54,8 @@
         remark: document.getElementById('remark').value.trim(),
       };
 
-      if (!payload.name || !payload.phone || !payload.province || !payload.score) {
-        alert('请填写所有必填项（姓名、电话、省份、分数）');
+      if (!payload.name || !payload.phone || !payload.wechat || !payload.province || !payload.score) {
+        alert('请填写所有必填项（姓名、电话、微信号、省份、分数）');
         return;
       }
 
